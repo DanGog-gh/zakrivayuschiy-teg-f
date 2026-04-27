@@ -1,0 +1,304 @@
+/* Здесь вы напишете основную часть стилей страницы.
+
+Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
+
+*/
+
+.page {
+  min-inline-size: 320px;
+  min-block-size: 100dvb;
+  font-family: var(--font-inter);
+  font-variation-settings: 'wght' var(--font-weight-normal);
+  background-image: var(--horizontal-gradient), var(--vertical-gradient), var(--color-gradient);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.header {
+  padding-block: 100px;
+}
+
+.header-container {
+  width: var(--container-width);
+  height: clamp(327px, 312.56px + 3.85vw, 368px);
+  border: 2px solid var(--accent-color);
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding-inline: clamp(16px, -21.50px + 10.00vw, 122.5px);
+  padding-block: clamp(120px, 116.48px + 0.94vw, 130px);
+  font-family: var(--font-press-start);
+  align-items: center;
+  gap: 20px;
+  justify-self: center;
+}
+
+.header-logo {
+  font-size: clamp(49px, 43.37px + 1.50vw, 65px);
+}
+
+.header-text {
+  text-transform: uppercase;
+  font-size: clamp(14px, 10.83px + 0.85vw, 23px);
+}
+
+.header__theme-menu {
+  display: none;
+}
+
+.card-list {
+  display: flex;
+  gap: 50px;
+  justify-self: center;
+  flex-direction: column;
+}
+
+.card-container {
+  border: 2px solid var(--accent-color);
+  background-color: #fff;
+  width: var(--container-width);
+}
+
+.card-header {
+  font-variation-settings: 'wght' var(--font-weight-bold);
+  padding: 4px 10px;
+  font-size: var(--font-size-default);
+}
+
+.image-container {
+  position: relative;
+  border-block: 2px solid var(--accent-color);
+  box-sizing: border-box;
+}
+
+.card-label {
+  font-family: var(--font-press-start);
+  font-size: 14px;
+  line-height: 100%;
+  text-shadow:
+    -1px 0 var(--stroke-color), 
+    0 1px var(--stroke-color), 
+    1px 0 var(--stroke-color), 
+    0 -1px var(--stroke-color);
+  top: 25px;
+  right: 25px;
+  position: absolute;
+  opacity: 50%;
+  z-index: 1;
+  mix-blend-mode: hard-light;
+}
+
+@supports (text-stroke: 1px #fff) or (-webkit-text-stroke: 1px #fff) {
+  .card-label {
+    -webkit-text-stroke: 1px var(--stroke-color);
+    text-stroke: 1px var(--stroke-color);
+    text-shadow: none;
+  }
+} 
+
+.card-image {
+  object-fit: cover;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  object-position: right;
+  display: block;
+}
+
+.card-text-container {
+  padding: 25px;
+  font-weight: var(--font-weight-normal);
+  line-height: 21px;
+  font-size: var(--font-size-default);
+}
+
+.card-text:first-child {
+  margin-bottom: 25px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 25px;
+  padding-right: 25px;
+  gap: 7px;
+}
+
+.card__icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 38px;
+  height: 38px;
+  transition: border 0.3s ease;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  border: 2px solid #000;
+}
+
+.card__like-button {
+  font-family: var(--font-press-start);
+  font-size: 14px;
+  line-height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 12.5px 37px; */
+  background-color: transparent;
+  box-sizing: border-box;
+  width: 130px;
+  height: 38px;
+}
+
+.save-button {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #fff;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  font-size: 14px;
+  line-height: 90%;
+  font-family: var(--font-press-start);
+  padding-inline: 18px;
+  padding-block: 15px;
+}
+
+.save-button .floppy {
+  width: 21px;
+}
+
+/* Кнопки и их состояния */
+
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: color ease-in-out 0.5s, box-shadow ease 0.3s;
+  border: 2px solid var(--accent-color);
+  z-index: 0;
+  cursor: pointer;
+}
+
+.button::before {
+  content: '';
+  inset: 0;
+  z-index: -1;
+  transform: scaleX(0);
+  position: absolute;
+  background-color: var(--accent-color);
+  transition: transform 0.5s ease-in-out;
+  transform-origin: left;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button:hover {
+  color: #fff;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0 var(--accent-color);
+}
+
+/* Фильтры */
+
+.filter-saturate {
+  filter: saturate(2.2);
+}
+
+.filter-brightness {
+  filter: brightness(1.3) contrast(2);
+}
+
+.filter-hue-rotate {
+  filter: hue-rotate(20deg);
+}
+
+.filter-invert {
+  filter: invert(80%);
+}
+
+.filter-warm {
+  filter: sepia(0.75) saturate(1.5) brightness(1.1) contrast(0.80);
+}
+
+.filter-grayscale-dim-blur {
+  filter: opacity(0.8) grayscale(1) blur(1px);
+}
+
+.filter-sepia-blur {
+  filter: blur(4.5px) sepia(0.2);
+}
+
+.filter-bright {
+  filter: brightness(1.3) opacity(1.1);
+}
+
+/* Диалоговое окно */
+
+.dialog-window[open] {
+  display: grid;
+  gap: 30px;
+  padding-block: 28px;
+  padding-inline: clamp(28px, 54.67px + -1.39vw, 38px);
+  max-width: 353px;
+  font-family: var(--font-press-start);
+  font-size: 14px;
+}
+
+.dialog-section {
+  display: flex;
+  gap: 20px;
+}
+
+.dialog-section .floppy {
+  width: 39px;
+  flex: none;
+}
+
+.dialog-text {
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+.dialog-button {
+  line-height: 90%;
+  padding-block: 10.5px;
+  background-color: transparent;
+}
+
+.dialog-window::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+/* Медиа */
+
+@media (width <= 375px) {
+  .save-button {
+    flex-direction: column;
+  }
+  .save-button .floppy {
+    width: 28px;
+  }
+}
