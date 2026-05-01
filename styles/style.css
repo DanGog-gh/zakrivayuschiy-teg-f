@@ -42,7 +42,6 @@
 .header-logo {
   font-size: clamp(49px, 43.37px + 1.50vw, 65px);
   white-space: nowrap;
-  text-decoration: none;
 }
 
 .header-text {
